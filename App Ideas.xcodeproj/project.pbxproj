@@ -15,6 +15,8 @@
 		0A17AE05268F9EF1009C4AA8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A17ADE1268F9EEF009C4AA8 /* ContentView.swift */; };
 		0A17AE06268F9EF1009C4AA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A17ADE2268F9EF1009C4AA8 /* Assets.xcassets */; };
 		0A17AE07268F9EF1009C4AA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A17ADE2268F9EF1009C4AA8 /* Assets.xcassets */; };
+		0AAF199C268FA82100DADB1B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF199B268FA82100DADB1B /* Data.swift */; };
+		0AAF199D268FA82100DADB1B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF199B268FA82100DADB1B /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 		0A17ADF6268F9EF1009C4AA8 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		0A17ADFC268F9EF1009C4AA8 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A17AE00268F9EF1009C4AA8 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		0AAF199B268FA82100DADB1B /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,7 @@
 			children = (
 				0A17ADE0268F9EEF009C4AA8 /* App_IdeasApp.swift */,
 				0A17ADE1268F9EEF009C4AA8 /* ContentView.swift */,
+				0AAF199B268FA82100DADB1B /* Data.swift */,
 				0A17ADE2268F9EF1009C4AA8 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -284,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A17AE04268F9EF1009C4AA8 /* ContentView.swift in Sources */,
+				0AAF199C268FA82100DADB1B /* Data.swift in Sources */,
 				0A17AE02268F9EF1009C4AA8 /* App_IdeasApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A17AE05268F9EF1009C4AA8 /* ContentView.swift in Sources */,
+				0AAF199D268FA82100DADB1B /* Data.swift in Sources */,
 				0A17AE03268F9EF1009C4AA8 /* App_IdeasApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,7 +461,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -466,7 +472,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -485,7 +491,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -496,7 +502,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
