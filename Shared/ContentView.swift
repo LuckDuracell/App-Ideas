@@ -22,6 +22,7 @@ struct ContentView: View {
     @State var ideasFile = Idea.loadFromFile()
     @State var ideas: [Idea] = []
     
+    @State var searchText = ""
     
     @State var newName: String = ""
     @State var newNotes: String = ""
@@ -40,22 +41,22 @@ struct ContentView: View {
             NavigationView {
                 VStack {
                     List {
-                        ForEach(ideas.indices, id: \.self, content: { idea in
+                        ForEach(searchResults, id: \.self, content: { idea in
                             HStack {
                                 ZStack {
                                     Color.white
                                         .frame(width: 19, height: 19, alignment: .center)
                                         .cornerRadius(30)
-                                    Image(uiImage: UIImage(systemName: "\(ideas[idea].icon)")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) ?? UIImage(systemName: "questionmark.app")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate))
+                                    Image(uiImage: UIImage(systemName: "\(idea.icon)")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) ?? UIImage(systemName: "questionmark.app")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate))
                                         .resizable()
                                         .foregroundColor(.white)
                                         .frame(width: 20, height: 20, alignment: .center)
                                         .padding(10)
-                                        .background(Color(ideas[idea].color))
+                                        .background(Color(idea.color))
                                         .cornerRadius(30)
                                     
                                 }
-                                Text(ideas[idea].name)
+                                Text(idea.name)
                                 
                                 Spacer()
                                 
@@ -63,14 +64,14 @@ struct ContentView: View {
                                     .padding()
                                 
                             } .onTapGesture {
-                                currentIdea = ideas[idea]
+                                currentIdea = idea
                                 newItem = false
                                 showSheet = true
-                                currentIdeaIndex = idea
+                                currentIdeaIndex = self.getPosition(item: idea)
                             }
                         })
                             .onDelete(perform: self.deleteItem)
-                    } .navigationTitle("App Ideas")
+                    } .searchable(text: $searchText)
                     Button {
                         //Bring up a sheet and set it to creating a new item mode
                         newItem = true
@@ -92,7 +93,7 @@ struct ContentView: View {
                             .cornerRadius(15)
                             .scaleEffect(scaleNewButton ? 0.95 : 1)
                     }
-                }
+                } .navigationTitle("App Ideas")
             }
             .onAppear(perform: {
                 if ideasFile.isEmpty == false {
@@ -626,6 +627,29 @@ struct ContentView: View {
             self.ideas.remove(atOffsets: indexSet)
             Idea.saveToFile(ideas)
         }
+    
+    var searchResults: [Idea] {
+            if searchText.isEmpty {
+                return ideas
+            } else {
+                print("contains")
+                print(ideas.filter { $0.name.contains(searchText) })
+                return ideas.filter { $0.name.contains(searchText) }
+            }
+        }
+    
+    func getPosition(item: Idea) -> Int {
+
+      for i in 0..<ideas.count {
+            
+            if (ideas[i].name == item.name){
+                return i
+            }
+            
+        }
+        
+        return 0
+    }
     
 }
 
