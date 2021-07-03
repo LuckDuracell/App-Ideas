@@ -47,10 +47,13 @@ struct ContentView: View {
     }
     
     var formatter = DateFormatter()
+    var formatter2 = DateFormatter()
         init() {
             UITextView.appearance().backgroundColor = .clear
             formatter.dateStyle = .long
             formatter.timeStyle = .short
+            formatter2.dateStyle = .short
+            formatter2.timeStyle = .none
         }
     
     var body: some View {
@@ -77,8 +80,14 @@ struct ContentView: View {
                                 
                                 Spacer()
                                 
-                                Text(Date().formatted(date: .numeric, time: .omitted))
-                                    .padding()
+                                if #available(iOS 15.0, *) {
+                                    Text(Date().formatted(date: .numeric, time: .omitted))
+                                        .padding()
+                                } else {
+                                    // Fallback on earlier versions
+                                    Text(formatter2.string(from: Date()))
+                                        .padding()
+                                }
                                 
                             } .onTapGesture {
                                 currentIdea = idea
@@ -145,8 +154,14 @@ struct ContentView: View {
                         
                         Text(newName == "" ? "App Name" : newName)
                         Spacer()
-                        Text(Date().formatted(date: .numeric, time: .omitted))
-                            .padding()
+                        if #available(iOS 15.0, *) {
+                            Text(Date().formatted(date: .numeric, time: .omitted))
+                                .padding()
+                        } else {
+                            // Fallback on earlier versions
+                            Text(formatter2.string(from: Date()))
+                                .padding()
+                        }
                     }
                     .padding()
                     .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.2, alignment: .leading)
