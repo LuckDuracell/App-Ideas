@@ -28,6 +28,16 @@ struct ContentView: View {
     @State var newNotes: String = ""
     @State var newColor = "blue2"
     @State var newIcon = "house"
+
+    var searchResults: [Idea] {
+            if searchText.isEmpty {
+                return ideas
+            } else {
+                print("contains")
+                print(ideas.filter { $0.name.contains(searchText) })
+                return ideas.filter { $0.name.contains(searchText) }
+            }
+        }
     
     var formatter = DateFormatter()
         init() {
@@ -628,26 +638,12 @@ struct ContentView: View {
             Idea.saveToFile(ideas)
         }
     
-    var searchResults: [Idea] {
-            if searchText.isEmpty {
-                return ideas
-            } else {
-                print("contains")
-                print(ideas.filter { $0.name.contains(searchText) })
-                return ideas.filter { $0.name.contains(searchText) }
-            }
-        }
-    
     func getPosition(item: Idea) -> Int {
-
       for i in 0..<ideas.count {
-            
             if (ideas[i].name == item.name){
                 return i
             }
-            
         }
-        
         return 0
     }
     
