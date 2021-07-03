@@ -7,7 +7,7 @@
 
 import SwiftUI
 import CoreData
-import UIKit
+
 
 struct ContentView: View {
     
@@ -22,22 +22,29 @@ struct ContentView: View {
     @State var ideasFile = Idea.loadFromFile()
     @State var ideas: [Idea] = []
     
-    @State var searchText = ""
+    @State private var searchText = ""
     
     @State var newName: String = ""
     @State var newNotes: String = ""
     @State var newColor = "blue2"
     @State var newIcon = "house"
-
+    
     var searchResults: [Idea] {
-            if searchText.isEmpty {
-                return ideas
-            } else {
-                print("contains")
-                print(ideas.filter { $0.name.contains(searchText) })
-                return ideas.filter { $0.name.contains(searchText) }
+        if searchText.isEmpty {
+            return ideas
+        } else {
+            return ideas.filter { $0.name.contains(searchText) }
+        }
+    }
+        
+    func getPosition(item: Idea) -> Int {
+      for i in 0..<ideas.count {
+            if (ideas[i].name == item.name){
+                return i
             }
         }
+        return 0
+    }
     
     var formatter = DateFormatter()
         init() {
@@ -51,7 +58,7 @@ struct ContentView: View {
             NavigationView {
                 VStack {
                     List {
-                        ForEach(searchResults, id: \.self, content: { idea in
+                        ForEach(ideas, id: \.self, content: { idea in
                             HStack {
                                 ZStack {
                                     Color.white
@@ -81,7 +88,8 @@ struct ContentView: View {
                             }
                         })
                             .onDelete(perform: self.deleteItem)
-                    } .searchable(text: $searchText)
+                    }
+                    //.searchable(text: $searchText, placement: .automatic)
                     Button {
                         //Bring up a sheet and set it to creating a new item mode
                         newItem = true
@@ -637,15 +645,6 @@ struct ContentView: View {
             self.ideas.remove(atOffsets: indexSet)
             Idea.saveToFile(ideas)
         }
-    
-    func getPosition(item: Idea) -> Int {
-      for i in 0..<ideas.count {
-            if (ideas[i].name == item.name){
-                return i
-            }
-        }
-        return 0
-    }
     
 }
 
