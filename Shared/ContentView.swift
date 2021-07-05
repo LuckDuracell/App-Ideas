@@ -29,6 +29,8 @@ struct ContentView: View {
     @State var newColor = "blue2"
     @State var newIcon = "house"
     
+    @State var isEditing: Bool = false
+    
     var searchResults: [Idea] {
         if searchText.isEmpty {
             return ideas
@@ -50,6 +52,7 @@ struct ContentView: View {
     var formatter2 = DateFormatter()
         init() {
             UITextView.appearance().backgroundColor = .clear
+            
             formatter.dateStyle = .long
             formatter.timeStyle = .short
             formatter2.dateStyle = .short
@@ -84,13 +87,15 @@ struct ContentView: View {
                                 
                                 Spacer()
                                 
-                                if #available(iOS 15.0, *) {
-                                    Text(Date().formatted(date: .numeric, time: .omitted))
-                                        .padding()
-                                } else {
-                                    // Fallback on earlier versions
-                                    Text(formatter2.string(from: Date()))
-                                        .padding()
+                                if isEditing == false {
+                                    if #available(iOS 15.0, *) {
+                                        Text(Date().formatted(date: .numeric, time: .omitted))
+                                            .padding()
+                                    } else {
+                                        // Fallback on earlier versions
+                                        Text(formatter2.string(from: Date()))
+                                            .padding()
+                                    }
                                 }
                                 
                             } .onTapGesture {
@@ -101,30 +106,74 @@ struct ContentView: View {
                             }
                         })
                             .onDelete(perform: self.deleteItem)
+                            .onMove { (indexSet, index) in
+                                self.ideas.move(fromOffsets: indexSet, toOffset: index)
+                            }
+                    }
+                    .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button {
+                                isEditing.toggle()
+                            } label: {
+                                Text(isEditing ? "Done" :"Edit")
+                                    .padding(.top)
+                                    .padding(.bottom)
+                            }
+                        }
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button {
+                                newItem = true
+                                showSheet.toggle()
+                                //----------------
+                                
+                                //Makess button smaller when tapped
+                                scaleNewButton.toggle()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+                                    scaleNewButton.toggle()
+                                })
+
+                            } label: {
+                                
+                                Text("Add")
+                                    .padding(.top)
+                                    .padding(.bottom)
+                                
+//                                Image(systemName: "plus.circle")
+//                                    .padding(.top)
+//                                    .padding(.bottom)
+                            }
+                        }
                     }
                     //.searchable(text: $searchText, placement: .automatic)
-                    Button {
-                        //Bring up a sheet and set it to creating a new item mode
-                        newItem = true
-                        showSheet.toggle()
-                        //----------------
-                        
-                        //Makess button smaller when tapped
-                        scaleNewButton.toggle()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
-                            scaleNewButton.toggle()
-                        })
-                        //---------
-                    } label: {
-                        Text("New Item")
-                            .fontWeight(.bold)
-                            .padding()
-                            .frame(width: UIScreen.main.bounds.width*0.9, height: UIScreen.main.bounds.width*0.15, alignment: .center)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(15)
-                            .scaleEffect(scaleNewButton ? 0.95 : 1)
-                    }
+                    
+//                    Button {
+//                        //Bring up a sheet and set it to creating a new item mode
+//                        newItem = true
+//                        showSheet.toggle()
+//                        //----------------
+//
+//                        //Makess button smaller when tapped
+//                        scaleNewButton.toggle()
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+//                            scaleNewButton.toggle()
+//                        })
+//                        //---------
+//                    } label: {
+//                        Text("New Item")
+//                            .fontWeight(.bold)
+//                            .padding()
+//                            .frame(width: UIScreen.main.bounds.width*0.9, height: UIScreen.main.bounds.width*0.15, alignment: .center)
+//                            .background(Color.gray.opacity(0.2))
+//                            .cornerRadius(15)
+//                            .scaleEffect(scaleNewButton ? 0.95 : 1)
+//                    }
+                    
+                    
+                    
+                    
                 } .navigationTitle("App Ideas")
+                    
             }
             .onAppear(perform: {
                 if ideasFile.isEmpty == false {

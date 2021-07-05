@@ -46,6 +46,7 @@
 		0A17ADF6268F9EF1009C4AA8 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		0A17ADFC268F9EF1009C4AA8 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A17AE00268F9EF1009C4AA8 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		0A51EC3526939888000F6D37 /* App-Ideas--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "App-Ideas--iOS--Info.plist"; sourceTree = "<group>"; };
 		0AAF199B268FA82100DADB1B /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +85,7 @@
 		0A17ADDA268F9EEF009C4AA8 = {
 			isa = PBXGroup;
 			children = (
+				0A51EC3526939888000F6D37 /* App-Ideas--iOS--Info.plist */,
 				0A17ADDF268F9EEF009C4AA8 /* Shared */,
 				0A17ADF5268F9EF1009C4AA8 /* Tests iOS */,
 				0A17ADFF268F9EF1009C4AA8 /* Tests macOS */,
@@ -456,6 +458,10 @@
 				DEVELOPMENT_TEAM = RV78ENMXZ2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "App-Ideas--iOS--Info.plist";
+				INFOPLIST_KEY_CFBundleExecutable = "App Ideas";
+				INFOPLIST_KEY_CFBundleName = "App Ideas";
+				INFOPLIST_KEY_CFBundleVersion = 200;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -466,7 +472,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.luckdev.App-Ideas";
 				PRODUCT_NAME = "App Ideas";
 				SDKROOT = iphoneos;
@@ -486,6 +492,10 @@
 				DEVELOPMENT_TEAM = RV78ENMXZ2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "App-Ideas--iOS--Info.plist";
+				INFOPLIST_KEY_CFBundleExecutable = "App Ideas";
+				INFOPLIST_KEY_CFBundleName = "App Ideas";
+				INFOPLIST_KEY_CFBundleVersion = 200;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -496,7 +506,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.luckdev.App-Ideas";
 				PRODUCT_NAME = "App Ideas";
 				SDKROOT = iphoneos;
