@@ -67,14 +67,18 @@ struct ContentView: View {
                                     Color.white
                                         .frame(width: 19, height: 19, alignment: .center)
                                         .cornerRadius(30)
-                                    Image(uiImage: UIImage(systemName: "\(idea.icon)")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) ?? UIImage(systemName: "questionmark.app")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate))
-                                        .resizable()
-                                        .foregroundColor(.white)
-                                        .frame(width: 20, height: 20, alignment: .center)
-                                        .padding(10)
-                                        .background(Color(idea.color))
-                                        .cornerRadius(30)
-                                    
+                                    ZStack {
+                                        Circle()
+                                            .foregroundColor(Color("\(idea.color)"))
+                                            .frame(width: 40, height: 40)
+                                        
+                                        Image(uiImage: UIImage(systemName: "\(idea.icon)")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) ?? UIImage(systemName: "questionmark.app")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate))
+                                            .resizable()
+                                            .foregroundColor(.white)
+                                            .scaledToFit()
+                                            .padding(10)
+                                            .cornerRadius(30)
+                                    } .frame(width: 45, height: 45, alignment: .center)
                                 }
                                 Text(idea.name)
                                 
@@ -144,13 +148,18 @@ struct ContentView: View {
                 if newItem {
                     // Code for adding an idea
                     HStack {
-                        Image(uiImage: UIImage(systemName: "\(newIcon)")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) ?? UIImage(systemName: "questionmark.app")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate))
-                            .resizable()
-                            .foregroundColor(.white)
-                            .frame(width: 20, height: 20, alignment: .center)
-                            .padding(10)
-                            .background(Color(newColor))
-                            .cornerRadius(30)
+                        ZStack {
+                            Circle()
+                                .foregroundColor(Color("\(newColor)"))
+                                .frame(width: 40, height: 40)
+                            
+                            Image(uiImage: UIImage(systemName: "\(newIcon)")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) ?? UIImage(systemName: "questionmark.app")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate))
+                                .resizable()
+                                .foregroundColor(.white)
+                                .scaledToFit()
+                                .padding(10)
+                                .cornerRadius(30)
+                        } .frame(width: 45, height: 45, alignment: .center)
                         
                         Text(newName == "" ? "App Name" : newName)
                         Spacer()
@@ -400,13 +409,18 @@ struct ContentView: View {
                     VStack {
                         
                         HStack {
-                            Image(uiImage: UIImage(systemName: "\(currentIdea.icon)")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) ?? UIImage(systemName: "questionmark.app")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate))
-                                .resizable()
-                                .foregroundColor(.white)
-                                .frame(width: 20, height: 20, alignment: .center)
-                                .padding(10)
-                                .background(Color(currentIdea.color))
-                                .cornerRadius(30)
+                            ZStack {
+                                Circle()
+                                    .foregroundColor(Color("\(currentIdea.color)"))
+                                    .frame(width: 40, height: 40)
+                                
+                                Image(uiImage: UIImage(systemName: "\(currentIdea.icon)")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) ?? UIImage(systemName: "questionmark.app")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate))
+                                    .resizable()
+                                    .foregroundColor(.white)
+                                    .scaledToFit()
+                                    .padding(10)
+                                    .cornerRadius(30)
+                            } .frame(width: 45, height: 45, alignment: .center)
                             TextField("App Idea", text: $currentIdea.name)
                                 .font(.system(size: 35, weight: .bold))
                                 .font(.largeTitle)
