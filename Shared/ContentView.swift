@@ -144,7 +144,7 @@ struct ContentView: View {
                 if newItem {
                     // Code for adding an idea
                     HStack {
-                        Image(systemName: newIcon)
+                        Image(uiImage: UIImage(systemName: "\(newIcon)")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) ?? UIImage(systemName: "questionmark.app")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate))
                             .resizable()
                             .foregroundColor(.white)
                             .frame(width: 20, height: 20, alignment: .center)
@@ -400,7 +400,7 @@ struct ContentView: View {
                     VStack {
                         
                         HStack {
-                            Image(systemName: currentIdea.icon)
+                            Image(uiImage: UIImage(systemName: "\(currentIdea.icon)")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate) ?? UIImage(systemName: "questionmark.app")!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate))
                                 .resizable()
                                 .foregroundColor(.white)
                                 .frame(width: 20, height: 20, alignment: .center)
