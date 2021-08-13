@@ -450,6 +450,7 @@ struct ContentView: View {
                             .padding()
                             .frame(width: UIScreen.main.bounds.width*0.9, height: UIScreen.main.bounds.width*0.15, alignment: .center)
                             .background(Color.gray.opacity(0.2))
+                            .foregroundColor(.blue)
                             .cornerRadius(15)
                     } .padding()
                     
@@ -695,6 +696,7 @@ struct ContentView: View {
                                     .padding()
                                     .frame(width: UIScreen.main.bounds.width*0.9, height: UIScreen.main.bounds.width*0.15, alignment: .center)
                                     .background(Color.gray.opacity(0.2))
+                                    .foregroundColor(.blue)
                                     .cornerRadius(15)
                             }
 
